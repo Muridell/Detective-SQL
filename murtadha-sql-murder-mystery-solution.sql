@@ -11,8 +11,7 @@ The second witness, named Annabel, lives somewhere on "Franklin Ave".
 --Find the first witness who lives at the last house on Northwestern Dr.
 select * from person 
 where address_street_name = 'Northwestern Dr' 
-order by address_number DESC
-LIMIT 1;
+order by address_number DESC;
 
 /*I get a list of people and I have a lead. How about I query the interview table 
 and compare see those who live on Northwestern Dr and have a transcript*/
@@ -47,16 +46,16 @@ Annabel: I saw the murder happen, and I recognized the killer from my gym when
 I was working out last week on January the 9th.
 */
 
---Using Annabel's transcript:
-select * from get_fit_now_check_in
-WHERE check_in_date = '20180109' and membership_id in ('48Z7A', '48Z55');
-/*This shows that the suspect checked-in the gym on January 9th, 2018 as mentioned by Annabel*/
-
 --Using Morty's transcript:
 --Query Get Fit Now data
 select * from get_fit_now_member 
 where id LIKE '48Z%' and membership_status = 'gold';
 /*Two names pop up: Joe Germuska and Jeremy Bowers*/
+
+--Using Annabel's transcript:
+select * from get_fit_now_check_in
+WHERE check_in_date = '20180109' and membership_id in ('48Z7A', '48Z55');
+/*This shows that the suspect checked-in the gym on January 9th, 2018 as mentioned by Annabel*/
 
 --Query Drivers License record
 SELECT p.name, p.license_id, dl.* 
